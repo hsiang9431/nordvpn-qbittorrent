@@ -10,11 +10,15 @@ RUN apt update -y && \
     /var/lib/apt/lists/* \
     /var/tmp/*
 
-RUN mkdir -p /etc/qBittorrent/config && \
+RUN mkdir -p /opt/qBittorrent/config && \
     echo '[Preferences]\n\
 WebUI\AuthSubnetWhitelist=0.0.0.0/0\n\
 WebUI\AuthSubnetWhitelistEnabled=true\n\
 WebUI\UseUPnP=false\n' \
->> /etc/qBittorrent/config/qBittorrent.conf
+>> /opt/qBittorrent/config/qBittorrent.conf
+
+RUN chmod -R 0777 /opt/qBittorrent
+
+USER 1000:1000
 
 ENTRYPOINT [ "qbittorrent-nox" ]

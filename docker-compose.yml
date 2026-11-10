@@ -19,15 +19,16 @@ services:
       retries: 3
       start_period: 30s
       start_interval: 3s
-  qbitorrent:
+  qbittorrent:
     build:
       context: .
-      dockerfile: Dockerfile-qbitorrent
+      dockerfile: Dockerfile-qbittorrent
     network_mode: service:nordvpn
-    command: [ '--profile=/etc' ]
+    command: [ '--profile=/opt' ]
+    user: 1000:1000
     volumes:
-      - C:\Downloads:/etc/qBittorrent/downloads
-      - qbitorrent-data:/etc/qBittorrent/data
+      - C:\Downloads:/opt/qBittorrent/downloads
+      - qbittorrent-data:/opt/qBittorrent/data
     restart: unless-stopped
     depends_on:
       nordvpn:
@@ -35,5 +36,5 @@ services:
         restart: true
 
 volumes:
-  qbitorrent-data:
+  qbittorrent-data:
 
