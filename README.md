@@ -1,5 +1,5 @@
-# nordvpn-qbitorrent
-nordvpn and qbitorrent in docker
+# nordvpn-qbittorrent
+nordvpn and qbittorrent in docker
 
 
 ## Setup
@@ -30,24 +30,54 @@ volumes:
   - C:\Downloads:/etc/qBittorrent/downloads
 ```
 
+```yaml
+volumes:
+  - /mnt/downloads:/etc/qBittorrent/downloads
+```
+
+
 ## Start/Stop service
 
-Use `docker-compose.exe` to start service. This exe file comes with Docker Desktop on Windows.
+### Linux
+
+Use `docker compose` to start service.
 
 ```
-PS D:\github\nordvpn-qbitorrent> docker-compose.exe up -d
+docker compose up -d
 ```
 
 or stop service
 
 ```
-PS D:\github\nordvpn-qbitorrent> docker-compose.exe stop
+docker compose down
 ```
 
 
-## Access `qBitorrent` WebUI
+### Windows
 
-`qBitorrent` WebUI is available on `http://localhost:8080`
+Use `docker-compose.exe` to start service. This exe file comes with Docker Desktop on Windows.
+
+```
+PS D:\github\nordvpn-qbittorrent> docker-compose.exe up -d
+```
+
+or stop service
+
+```
+PS D:\github\nordvpn-qbittorrent> docker-compose.exe stop
+```
+
+
+## Access `qBittorrent` WebUI
+
+`qBittorrent` WebUI is available on `http://localhost:8080`
+
+
+## Known Issue
+
+Nordvpn sometime needs upgrade or it can't connect.
+
+If it keeps failing to connect, remove image and re-build with `docker compose`
 
 
 ## Reference
