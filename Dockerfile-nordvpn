@@ -17,7 +17,7 @@ RUN apt-get update -y && \
 
 RUN echo '(nordvpn status | grep "Status: Connected") && exit 0\n\
 nordvpn set dns 1.1.1.1 1.0.0.1 || true\n\
-nordvpn whitelist add port 8080 || true\n\
+nordvpn allowlist add port 8080 || true\n\
 nordvpn set killswitch on || true\n\
 nordvpn login --token $NORDVPN_TOKEN || true\n\
 nordvpn connect\n\
